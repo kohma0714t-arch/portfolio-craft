@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUp, Github } from 'lucide-react';
+import { ArrowUp, Github, Mail } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -42,9 +42,17 @@ export const Footer: React.FC = () => {
           {/* Social + Scroll Top */}
           <div className="flex items-center gap-3">
             <a
-              href="https://github.com/"
+              href="mailto:kohma0714.t@gmail.com"
+              aria-label="Email"
+              className="w-9 h-9 rounded-full border border-black/[0.08] flex items-center justify-center hover:bg-canvas-muted transition-colors"
+            >
+              <Mail size={16} className="text-ink-secondary" />
+            </a>
+            <a
+              href="https://github.com/kohma0714t-arch"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="GitHub"
               className="w-9 h-9 rounded-full border border-black/[0.08] flex items-center justify-center hover:bg-canvas-muted transition-colors"
             >
               <Github size={16} className="text-ink-secondary" />

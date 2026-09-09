@@ -21,7 +21,7 @@ export const Contact: React.FC = () => {
       `お名前: ${formData.name}\nメールアドレス: ${formData.email}\n\n${formData.message}`
     );
 
-    window.location.href = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:kohma0714.t@gmail.com?subject=${subject}&body=${body}`;
     setTimeout(() => setIsSending(false), 1500);
   };
 
@@ -32,8 +32,18 @@ export const Contact: React.FC = () => {
   };
 
   const contactLinks = [
-    { icon: Mail, label: 'Email', value: 'your-email@example.com' },
-    { icon: Github, label: 'GitHub', value: 'github.com/your-handle' },
+    {
+      icon: Mail,
+      label: 'Email',
+      value: 'kohma0714.t@gmail.com',
+      href: 'mailto:kohma0714.t@gmail.com',
+    },
+    {
+      icon: Github,
+      label: 'GitHub',
+      value: 'github.com/kohma0714t-arch',
+      href: 'https://github.com/kohma0714t-arch',
+    },
   ];
 
   return (
@@ -79,15 +89,21 @@ export const Contact: React.FC = () => {
             {/* Contact Links */}
             <div className="space-y-4">
               {contactLinks.map((link, idx) => (
-                <div key={idx} className="flex items-center gap-3 text-sm text-ink-secondary">
-                  <div className="w-8 h-8 rounded-lg bg-white border border-black/[0.06] flex items-center justify-center shadow-card">
-                    <link.icon size={14} className="text-ink-secondary" />
+                <a
+                  key={idx}
+                  href={link.href}
+                  target={link.href.startsWith('http') ? '_blank' : undefined}
+                  rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="flex items-center gap-3 text-sm text-ink-secondary hover:text-ink transition-colors group"
+                >
+                  <div className="w-8 h-8 rounded-lg bg-white border border-black/[0.06] flex items-center justify-center shadow-card group-hover:border-black/[0.15] transition-colors">
+                    <link.icon size={14} className="text-ink-secondary group-hover:text-ink transition-colors" />
                   </div>
                   <div>
                     <p className="text-[10px] font-mono text-ink-muted uppercase">{link.label}</p>
                     <p className="text-xs font-mono">{link.value}</p>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </motion.div>
