@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { getAssetUrl } from '../utils/assets';
 
 const containerVariants = {
   hidden: {},
@@ -38,7 +39,7 @@ export const Hero: React.FC = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="/images/hero-bg.jpg"
+          src={getAssetUrl('/images/hero-bg.jpg')}
           alt=""
           className="w-full h-full object-cover"
         />

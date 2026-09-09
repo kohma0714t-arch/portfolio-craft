@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { RotateCcw, QrCode, ChevronRight, Clock } from 'lucide-react';
+import { getAssetUrl } from '../utils/assets';
 
 export interface PhoneScreenData {
   id: string;
@@ -177,7 +178,7 @@ export const InteractivePhone: React.FC<InteractivePhoneProps> = ({ appKey }) =>
                 /* Screenshot */
                 <div className="flex-1 rounded-2xl overflow-hidden border border-white/[0.08] flex items-center justify-center bg-black">
                   <img
-                    src="/images/StudyStack1.png"
+                    src={getAssetUrl('/images/StudyStack1.png')}
                     alt="Study Stack Screenshot"
                     className="w-full h-full object-cover"
                   />
@@ -187,7 +188,7 @@ export const InteractivePhone: React.FC<InteractivePhoneProps> = ({ appKey }) =>
                 <div className="flex-1 flex flex-col items-center justify-center text-center p-2">
                   <p className="text-xs font-mono text-neutral-400 mb-3">Expo Go でスキャン</p>
                   <div className="w-40 h-40 bg-white p-2.5 rounded-xl shadow-lg mb-3">
-                    <img src="/images/StudyStackQR.png" alt="QR" className="w-full h-full object-contain" />
+                    <img src={getAssetUrl('/images/StudyStackQR.png')} alt="QR" className="w-full h-full object-contain" />
                   </div>
                   <p className="text-[11px] text-neutral-400">実機ですぐに動かせます</p>
                 </div>
@@ -241,7 +242,7 @@ export const InteractivePhone: React.FC<InteractivePhoneProps> = ({ appKey }) =>
                 /* Screenshot */
                 <div className="flex-1 rounded-2xl overflow-hidden border border-white/[0.08] flex items-center justify-center bg-black">
                   <img
-                    src="/images/TimeSc1.png"
+                    src={getAssetUrl('/images/TimeSc1.png')}
                     alt="わかりやすい時間割 Screenshot"
                     className="w-full h-full object-cover"
                   />
@@ -251,7 +252,7 @@ export const InteractivePhone: React.FC<InteractivePhoneProps> = ({ appKey }) =>
                 <div className="flex-1 flex flex-col items-center justify-center text-center p-2">
                   <p className="text-xs font-mono text-neutral-400 mb-3">Expo Go でスキャン</p>
                   <div className="w-40 h-40 bg-white p-2.5 rounded-xl shadow-lg mb-3">
-                    <img src="/images/TimeScQR.png" alt="QR" className="w-full h-full object-contain" />
+                    <img src={getAssetUrl('/images/TimeScQR.png')} alt="QR" className="w-full h-full object-contain" />
                   </div>
                   <p className="text-[11px] text-neutral-400">実機ですぐに動かせます</p>
                 </div>

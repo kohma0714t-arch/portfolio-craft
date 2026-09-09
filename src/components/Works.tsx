@@ -1,6 +1,7 @@
 import React from 'react';
 import { QrCode, ArrowUpRight } from 'lucide-react';
 import { AppItem } from './QrModal';
+import { getAssetUrl } from '../utils/assets';
 
 interface WorksProps {
   onOpenModal: (app: AppItem) => void;
@@ -16,8 +17,8 @@ export const Works: React.FC<WorksProps> = ({ onOpenModal }) => {
         '効率的な暗記・復習をサポートするカード型学習アプリ。学習履歴と正答率を集計し、理解度が低いカードを集中的に出題するロジックを実装。反復学習の負担を減らすことを目指しました。',
       category: 'Mobile Application',
       tags: ['React Native', 'Expo', 'TypeScript', 'AsyncStorage'],
-      image: '/images/StudyStack1.png',
-      qrImage: '/images/StudyStackQR.png',
+      image: getAssetUrl('/images/StudyStack1.png'),
+      qrImage: getAssetUrl('/images/StudyStackQR.png'),
     },
     {
       id: 'timesc',
@@ -27,8 +28,8 @@ export const Works: React.FC<WorksProps> = ({ onOpenModal }) => {
         '大学生活に特化した時間割管理ツール。講義の教室番号や担当教員、当日の時間割をトップ画面からワンタップで確認できる導線を重視してUIを構築しました。',
       category: 'Mobile Application',
       tags: ['React Native', 'Expo', 'TypeScript', 'UI/UX Design'],
-      image: '/images/TimeSc1.png',
-      qrImage: '/images/TimeScQR.png',
+      image: getAssetUrl('/images/TimeSc1.png'),
+      qrImage: getAssetUrl('/images/TimeScQR.png'),
     },
   ];
 

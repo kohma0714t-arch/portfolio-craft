@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Monitor, Paintbrush, Zap } from 'lucide-react';
+import { getAssetUrl } from '../utils/assets';
 
 const sectionVariants = {
   hidden: { opacity: 0 },
@@ -103,7 +104,7 @@ export const About: React.FC = () => {
           <motion.div className="lg:col-span-6" variants={itemVariants}>
             <div className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-canvas-muted">
               <img
-                src="/images/MyImage.png"
+                src={getAssetUrl('/images/MyImage.png')}
                 alt="koma"
                 className="w-full h-full object-cover"
               />
