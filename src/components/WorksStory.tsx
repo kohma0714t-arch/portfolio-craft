@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { getAssetUrl } from '../utils/assets';
 
 interface WorkItem {
   id: string;
@@ -13,6 +14,7 @@ interface WorkItem {
   highlights: string[];
   challenges: string[];
   status: 'published' | 'coming-soon';
+  iconImage?: string;
 }
 
 const works: WorkItem[] = [
@@ -22,6 +24,7 @@ const works: WorkItem[] = [
     category: 'Mobile App',
     title: 'Study Stack',
     subtitle: '暗記学習・反復復習効率化アプリ',
+    iconImage: getAssetUrl('/images/StudyStack_icon.png'),
     description:
       '試験対策や資格学習で生じる「すでに覚えた問題に時間を取られ、苦手な問題が後回しになる」という課題を解決するために制作したカード型学習アプリです。',
     techStack: ['React Native', 'Expo', 'TypeScript'],
@@ -37,11 +40,12 @@ const works: WorkItem[] = [
     status: 'published',
   },
   {
-    id: 'timesc',
+    id: 'unitime',
     projectNumber: '02',
     category: 'Mobile App',
-    title: 'Study Timer',
+    title: 'UniTime',
     subtitle: '大学生向け時間割・タスク統合管理',
+    iconImage: getAssetUrl('/images/UniTime_icon.png'),
     description:
       '大学の講義棟や教室番号、課題の締切日時は分散しがちです。「アプリを開いた瞬間に、今日これから行くべき教室がひと目でわかる」ことを最優先に設計しました。',
     techStack: ['React Native', 'Expo', 'TypeScript'],
@@ -148,22 +152,37 @@ export const WorksStory: React.FC = () => {
                 >
                   {/* Card Thumbnail */}
                   <div className="relative rounded-2xl overflow-hidden bg-ink aspect-[4/3] mb-4">
-                    {/* Placeholder visual — project icon/text */}
-                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6">
-                      <div className="text-5xl font-display font-bold text-white/20">
-                        {work.projectNumber}
+                    {work.iconImage ? (
+                      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#1b1e2e] to-[#0d0f18] p-6">
+                        <img
+                          src={work.iconImage}
+                          alt={work.title}
+                          className="w-24 h-24 sm:w-28 sm:h-28 object-contain rounded-2xl shadow-xl transition-transform duration-300 group-hover:scale-105"
+                        />
                       </div>
-                      <h3 className="text-lg font-bold text-white text-center">
-                        {work.title}
-                      </h3>
-                      <p className="text-xs text-white/50 text-center">
-                        {work.subtitle}
-                      </p>
-                    </div>
+                    ) : (
+                      /* Placeholder visual — project icon/text */
+                      <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6">
+                        <div className="text-5xl font-display font-bold text-white/20">
+                          {work.projectNumber}
+                        </div>
+                        <h3 className="text-lg font-bold text-white text-center">
+                          {work.title}
+                        </h3>
+                        <p className="text-xs text-white/50 text-center">
+                          {work.subtitle}
+                        </p>
+                      </div>
+                    )}
 
                     {/* Category badge */}
                     <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm text-[10px] font-mono text-white/70 uppercase">
                       {work.category}
+                    </div>
+
+                    {/* Project number badge */}
+                    <div className="absolute top-4 right-4 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-sm text-[10px] font-mono text-white/60">
+                      {work.projectNumber}
                     </div>
                   </div>
 
@@ -259,16 +278,26 @@ export const WorksStory: React.FC = () => {
 
                 {/* Thumbnail */}
                 <div className="rounded-xl overflow-hidden bg-ink aspect-video mb-6">
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="text-center">
-                      <p className="text-6xl font-display font-bold text-white/15 mb-2">
-                        {selectedWork.projectNumber}
-                      </p>
-                      <p className="text-lg font-bold text-white">
-                        {selectedWork.title}
-                      </p>
+                  {selectedWork.iconImage ? (
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#1b1e2e] to-[#0d0f18] p-6">
+                      <img
+                        src={selectedWork.iconImage}
+                        alt={selectedWork.title}
+                        className="w-28 h-28 sm:w-32 sm:h-32 object-contain rounded-2xl shadow-2xl"
+                      />
                     </div>
-                  </div>
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <div className="text-center">
+                        <p className="text-6xl font-display font-bold text-white/15 mb-2">
+                          {selectedWork.projectNumber}
+                        </p>
+                        <p className="text-lg font-bold text-white">
+                          {selectedWork.title}
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex items-start justify-between">
