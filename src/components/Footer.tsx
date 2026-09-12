@@ -9,20 +9,21 @@ export const Footer: React.FC = () => {
 
   const footerLinks = [
     { label: 'About', href: '#about' },
-    { label: 'Works', href: '#works' },
     { label: 'Skills', href: '#skills' },
+    { label: 'Works', href: '#works' },
+    { label: 'Achievements', href: '#achievements' },
     { label: 'Contact', href: '#contact' },
   ];
 
   return (
-    <footer className="border-t border-black/[0.06] py-12 bg-white">
-      <div className="max-w-6xl mx-auto px-6">
+    <footer className="border-t-2 border-ink py-12 bg-cream">
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
           {/* Brand */}
           <div>
-            <p className="text-lg font-display font-bold text-ink">koma.</p>
+            <p className="text-xl font-display font-extrabold text-ink">koma.</p>
             <p className="text-xs text-ink-muted mt-1">
-              理想を形に — Engineering & Interface Craft
+              Student Engineer — つくるを楽しむ
             </p>
           </div>
 
@@ -32,7 +33,7 @@ export const Footer: React.FC = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-xs text-ink-muted hover:text-ink transition-colors"
+                className="text-xs text-ink-muted hover:text-ink transition-colors font-medium"
               >
                 {link.label}
               </a>
@@ -44,31 +45,31 @@ export const Footer: React.FC = () => {
             <a
               href="mailto:kohma0714.t@gmail.com"
               aria-label="Email"
-              className="w-9 h-9 rounded-full border border-black/[0.08] flex items-center justify-center hover:bg-canvas-muted transition-colors"
+              className="w-9 h-9 border-2 border-ink flex items-center justify-center hover:bg-ink hover:text-cream transition-colors"
             >
-              <Mail size={16} className="text-ink-secondary" />
+              <Mail size={16} />
             </a>
             <a
               href="https://github.com/kohma0714t-arch"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="w-9 h-9 rounded-full border border-black/[0.08] flex items-center justify-center hover:bg-canvas-muted transition-colors"
+              className="w-9 h-9 border-2 border-ink flex items-center justify-center hover:bg-ink hover:text-cream transition-colors"
             >
-              <Github size={16} className="text-ink-secondary" />
+              <Github size={16} />
             </a>
             <motion.button
               onClick={scrollToTop}
-              className="w-9 h-9 rounded-full border border-black/[0.08] flex items-center justify-center hover:bg-canvas-muted transition-colors"
+              className="w-9 h-9 border-2 border-pop-blue bg-pop-blue text-white flex items-center justify-center hover:bg-blue-600 hover:border-blue-600 transition-colors"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              <ArrowUp size={16} className="text-ink-secondary" />
+              <ArrowUp size={16} />
             </motion.button>
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-black/[0.04] text-xs text-ink-muted">
+        <div className="mt-8 pt-8 border-t-2 border-ink/10 text-xs text-ink-muted">
           <p>© 2026 koma. All Rights Reserved.</p>
         </div>
       </div>

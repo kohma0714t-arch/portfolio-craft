@@ -54,8 +54,13 @@ const workflowSteps = [
 
 export const Skills: React.FC = () => {
   return (
-    <section id="skills" className="py-28 relative">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="skills" className="py-24 sm:py-32 relative overflow-hidden bg-section-alt">
+      {/* Background texture */}
+      <div className="text-texture text-[clamp(100px,14vw,200px)] top-8 left-[-3%] opacity-[0.06] text-white">
+        SKILLS
+      </div>
+
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-8">
         {/* Section Header */}
         <motion.div
           className="mb-16"
@@ -64,18 +69,21 @@ export const Skills: React.FC = () => {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center gap-4 text-xs font-mono tracking-widest text-ink-muted uppercase mb-4">
-            <span>04</span>
-            <span className="w-8 h-px bg-ink-faint" />
-            <span>Skills & Workflow</span>
+          <div className="flex items-center gap-3 mb-6">
+            <span className="text-xs font-mono tracking-[0.2em] text-pop-mint font-semibold">03</span>
+            <span className="w-8 h-px bg-pop-mint" />
+            <span className="text-xs font-mono tracking-[0.2em] text-white/50 uppercase">Skills & Workflow</span>
           </div>
+          <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight leading-tight">
+            スキルセット
+          </h2>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Left: Tech Stack Grid */}
           <div>
             <motion.h3
-              className="text-xl font-bold text-ink font-display mb-8"
+              className="text-xl font-bold text-white font-display mb-8"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -98,12 +106,12 @@ export const Skills: React.FC = () => {
                   variants={itemVariants}
                 >
                   <motion.div
-                    className="w-14 h-14 rounded-2xl bg-canvas-muted border border-black/[0.04] flex items-center justify-center group-hover:border-black/[0.1] group-hover:shadow-card transition-all"
+                    className="w-14 h-14 bg-white/10 border-2 border-white/20 flex items-center justify-center group-hover:border-pop-mint group-hover:bg-pop-mint/10 transition-all"
                     whileHover={{ y: -3, transition: { duration: 0.2 } }}
                   >
-                    <item.icon size={22} className="text-ink-secondary" />
+                    <item.icon size={22} className="text-white/70 group-hover:text-pop-mint transition-colors" />
                   </motion.div>
-                  <span className="text-[10px] text-ink-muted text-center leading-tight">
+                  <span className="text-[10px] text-white/50 text-center leading-tight group-hover:text-white/80 transition-colors">
                     {item.name}
                   </span>
                 </motion.div>
@@ -114,7 +122,7 @@ export const Skills: React.FC = () => {
           {/* Right: Workflow */}
           <div>
             <motion.h3
-              className="text-xl font-bold text-ink font-display mb-2"
+              className="text-xl font-bold text-white font-display mb-2"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -123,7 +131,7 @@ export const Skills: React.FC = () => {
               Workflow
             </motion.h3>
             <motion.p
-              className="text-sm text-ink-secondary mb-8"
+              className="text-sm text-white/50 mb-8"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -136,7 +144,7 @@ export const Skills: React.FC = () => {
 
             {/* Process Flow */}
             <motion.div
-              className="flex items-start gap-3 mb-10"
+              className="flex items-start gap-3"
               variants={sectionVariants}
               initial="hidden"
               whileInView="visible"
@@ -148,39 +156,23 @@ export const Skills: React.FC = () => {
                     className="flex flex-col items-center text-center flex-1"
                     variants={itemVariants}
                   >
-                    <div className="w-12 h-12 rounded-xl bg-canvas-muted border border-black/[0.06] flex items-center justify-center mb-3">
-                      <step.icon size={20} className="text-ink-secondary" />
+                    <div className="w-12 h-12 border-2 border-white/20 bg-white/5 flex items-center justify-center mb-3">
+                      <step.icon size={20} className="text-pop-mint" />
                     </div>
-                    <p className="text-[11px] font-medium text-ink whitespace-pre-line leading-tight mb-1">
+                    <p className="text-[11px] font-medium text-white whitespace-pre-line leading-tight mb-1">
                       {step.label}
                     </p>
-                    <p className="text-[9px] text-ink-muted leading-tight hidden sm:block">
+                    <p className="text-[9px] text-white/40 leading-tight hidden sm:block">
                       {step.description}
                     </p>
                   </motion.div>
                   {idx < workflowSteps.length - 1 && (
                     <div className="flex items-center pt-5">
-                      <ArrowRight size={14} className="text-ink-faint" />
+                      <ArrowRight size={14} className="text-white/25" />
                     </div>
                   )}
                 </React.Fragment>
               ))}
-            </motion.div>
-
-            {/* AI-Native Strength */}
-            <motion.div
-              className="p-6 rounded-2xl bg-ink text-white"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <h4 className="text-sm font-semibold mb-3">AI-Native 開発の強み</h4>
-              <p className="text-xs text-white/60 leading-relaxed">
-                AIで「作った」のではなく、「理想を形にする」としてAIを活用。
-                エンジニア自身の美学でUI/UX・コードの品質を磨き上げることで、
-                スピードとクオリティを両立する開発を実現しています。
-              </p>
             </motion.div>
           </div>
         </div>

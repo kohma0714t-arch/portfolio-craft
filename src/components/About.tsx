@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Monitor, Paintbrush, Zap } from 'lucide-react';
 import { getAssetUrl } from '../utils/assets';
 
 const sectionVariants = {
@@ -20,28 +19,15 @@ const itemVariants = {
   },
 };
 
-const features = [
-  {
-    icon: Monitor,
-    title: 'モダン技術への探究心',
-    desc: '最新技術をキャッチアップし、最善の選択肢で設計します。',
-  },
-  {
-    icon: Paintbrush,
-    title: '細部へのこだわり',
-    desc: 'UI/UXの微細な部分まで妥協しない、心地よい体験を設計します。',
-  },
-  {
-    icon: Zap,
-    title: 'スピード × 品質',
-    desc: 'AIをコパイロットに、爆速で高品質なプロダクトを生み出します。',
-  },
-];
-
 export const About: React.FC = () => {
   return (
-    <section id="about" className="py-28 relative">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="about" className="py-24 sm:py-32 relative overflow-hidden">
+      {/* Background texture */}
+      <div className="text-texture text-[clamp(100px,14vw,200px)] top-8 right-[-5%] opacity-[0.03] -rotate-12">
+        ABOUT
+      </div>
+
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-8">
         {/* Section Header */}
         <motion.div
           className="mb-16"
@@ -50,11 +36,14 @@ export const About: React.FC = () => {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center gap-4 text-xs font-mono tracking-widest text-ink-muted uppercase mb-4">
-            <span>02</span>
-            <span className="w-8 h-px bg-ink-faint" />
-            <span>About</span>
+          <div className="flex items-center gap-3 mb-6">
+            <span className="text-xs font-mono tracking-[0.2em] text-pop-blue font-semibold">02</span>
+            <span className="w-8 h-px bg-pop-blue" />
+            <span className="text-xs font-mono tracking-[0.2em] text-ink-muted uppercase">About</span>
           </div>
+          <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-ink tracking-tight leading-tight">
+            自分のことについて
+          </h2>
         </motion.div>
 
         <motion.div
@@ -64,17 +53,30 @@ export const About: React.FC = () => {
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
         >
-          {/* Left: Text */}
-          <motion.div className="lg:col-span-6 space-y-6" variants={itemVariants}>
-            <h2 className="text-3xl sm:text-4xl font-bold text-ink tracking-tight font-display leading-tight">
+          {/* Left: Image (neo-brutal frame) */}
+          <motion.div className="lg:col-span-5" variants={itemVariants}>
+            <div className="card-brutal p-3">
+              <div className="overflow-hidden aspect-[4/3] bg-cream">
+                <img
+                  src={getAssetUrl('/images/MyImage.png')}
+                  alt="koma"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right: Text */}
+          <motion.div className="lg:col-span-7 space-y-6" variants={itemVariants}>
+            <h3 className="text-2xl sm:text-3xl font-display font-bold text-ink tracking-tight leading-tight">
               現役情報工学の大学生
               <br />
-              <span className="text-ink-muted">×</span>
+              <span className="text-pop-orange">×</span>
               <br />
-              フロントエンドエンジニア / フリーランス
-            </h2>
+              フロントエンドエンジニア
+            </h3>
 
-            <div className="space-y-4 text-sm sm:text-base text-ink-secondary leading-relaxed">
+            <div className="space-y-4 text-sm sm:text-base text-ink-secondary leading-[1.8]">
               <p>
                 React Native / Expo / TypeScript を軸に、
                 <br />
@@ -87,51 +89,22 @@ export const About: React.FC = () => {
               </p>
             </div>
 
-            <motion.a
-              href="#works"
-              className="inline-flex items-center gap-2 text-sm font-medium text-ink hover:text-ink-secondary transition-colors group"
-              whileHover={{ x: 4 }}
-            >
-              <span>詳しく見る</span>
-              <ArrowRight
-                size={14}
-                className="transition-transform group-hover:translate-x-1"
-              />
-            </motion.a>
-          </motion.div>
-
-          {/* Right: Image */}
-          <motion.div className="lg:col-span-6" variants={itemVariants}>
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-canvas-muted">
-              <img
-                src={getAssetUrl('/images/MyImage.png')}
-                alt="koma"
-                className="w-full h-full object-cover"
-              />
+            {/* Stats row */}
+            <div className="flex gap-8 pt-4">
+              <div>
+                <p className="text-3xl sm:text-4xl font-display font-extrabold text-pop-blue">3+</p>
+                <p className="text-xs text-ink-muted mt-1">リリースアプリ</p>
+              </div>
+              <div>
+                <p className="text-3xl sm:text-4xl font-display font-extrabold text-pop-blue">2026</p>
+                <p className="text-xs text-ink-muted mt-1">活動開始</p>
+              </div>
+              <div>
+                <p className="text-3xl sm:text-4xl font-display font-extrabold text-pop-orange">🏆</p>
+                <p className="text-xs text-ink-muted mt-1">ハッカソン受賞</p>
+              </div>
             </div>
           </motion.div>
-        </motion.div>
-
-        {/* Feature Cards */}
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-16"
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-40px' }}
-        >
-          {features.map((f, idx) => (
-            <motion.div
-              key={idx}
-              className="card-dark rounded-2xl p-6 flex flex-col items-start gap-3"
-              variants={itemVariants}
-              whileHover={{ y: -3, transition: { duration: 0.25 } }}
-            >
-              <f.icon size={20} className="text-white/60" />
-              <h3 className="text-sm font-semibold text-white">{f.title}</h3>
-              <p className="text-xs text-white/50 leading-relaxed">{f.desc}</p>
-            </motion.div>
-          ))}
         </motion.div>
       </div>
     </section>

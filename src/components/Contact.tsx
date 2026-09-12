@@ -47,8 +47,13 @@ export const Contact: React.FC = () => {
   ];
 
   return (
-    <section id="contact" className="py-28 bg-canvas-subtle relative">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="contact" className="py-24 sm:py-32 relative overflow-hidden bg-section-alt">
+      {/* Background texture */}
+      <div className="text-texture text-[clamp(80px,12vw,180px)] bottom-8 right-[-3%] opacity-[0.06] text-white">
+        CONTACT
+      </div>
+
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-8">
         {/* Section Header */}
         <motion.div
           className="mb-4"
@@ -57,10 +62,10 @@ export const Contact: React.FC = () => {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center gap-4 text-xs font-mono tracking-widest text-ink-muted uppercase mb-4">
-            <span>05</span>
-            <span className="w-8 h-px bg-ink-faint" />
-            <span>Contact</span>
+          <div className="flex items-center gap-3 mb-6">
+            <span className="text-xs font-mono tracking-[0.2em] text-pop-mint font-semibold">06</span>
+            <span className="w-8 h-px bg-pop-mint" />
+            <span className="text-xs font-mono tracking-[0.2em] text-white/50 uppercase">Contact</span>
           </div>
         </motion.div>
 
@@ -73,12 +78,10 @@ export const Contact: React.FC = () => {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-2xl sm:text-3xl font-bold text-ink font-display tracking-tight mb-4">
-              一緒に、理想を形に
-              <br />
-              しませんか？
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white font-display tracking-tight mb-4">
+              一緒に、つくりませんか？
             </h2>
-            <p className="text-sm text-ink-secondary leading-relaxed mb-8">
+            <p className="text-sm text-white/60 leading-relaxed mb-8">
               Webアプリ・スマホアプリの開発依頼、
               <br />
               案件のご相談、カジュアル面談など
@@ -94,14 +97,14 @@ export const Contact: React.FC = () => {
                   href={link.href}
                   target={link.href.startsWith('http') ? '_blank' : undefined}
                   rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="flex items-center gap-3 text-sm text-ink-secondary hover:text-ink transition-colors group"
+                  className="flex items-center gap-3 text-sm text-white/60 hover:text-white transition-colors group"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-white border border-black/[0.06] flex items-center justify-center shadow-card group-hover:border-black/[0.15] transition-colors">
-                    <link.icon size={14} className="text-ink-secondary group-hover:text-ink transition-colors" />
+                  <div className="w-10 h-10 border-2 border-white/20 flex items-center justify-center group-hover:border-pop-mint group-hover:bg-pop-mint/10 transition-all">
+                    <link.icon size={16} className="text-white/60 group-hover:text-pop-mint transition-colors" />
                   </div>
                   <div>
-                    <p className="text-[10px] font-mono text-ink-muted uppercase">{link.label}</p>
-                    <p className="text-xs font-mono">{link.value}</p>
+                    <p className="text-[10px] font-mono text-white/40 uppercase">{link.label}</p>
+                    <p className="text-xs font-mono text-white/70 group-hover:text-white transition-colors">{link.value}</p>
                   </div>
                 </a>
               ))}
@@ -110,18 +113,18 @@ export const Contact: React.FC = () => {
 
           {/* Right: Form */}
           <motion.div
-            className="lg:col-span-7 relative"
+            className="lg:col-span-7"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
+            <form onSubmit={handleSubmit} className="space-y-5">
               {/* Name */}
               <div className="space-y-1.5">
                 <label
                   htmlFor="contact-name"
-                  className="text-xs text-ink-secondary"
+                  className="text-xs text-white/50 font-mono uppercase tracking-wider"
                 >
                   お名前
                 </label>
@@ -133,7 +136,7 @@ export const Contact: React.FC = () => {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="山田 太郎"
-                  className="w-full px-4 py-3 rounded-xl bg-white border border-black/[0.08] text-sm text-ink placeholder:text-ink-faint focus-ring"
+                  className="w-full px-4 py-3 bg-white/5 border-2 border-white/15 text-sm text-white placeholder:text-white/20 focus-ring"
                 />
               </div>
 
@@ -141,7 +144,7 @@ export const Contact: React.FC = () => {
               <div className="space-y-1.5">
                 <label
                   htmlFor="contact-email"
-                  className="text-xs text-ink-secondary"
+                  className="text-xs text-white/50 font-mono uppercase tracking-wider"
                 >
                   メールアドレス
                 </label>
@@ -153,7 +156,7 @@ export const Contact: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="example@mail.com"
-                  className="w-full px-4 py-3 rounded-xl bg-white border border-black/[0.08] text-sm text-ink placeholder:text-ink-faint focus-ring"
+                  className="w-full px-4 py-3 bg-white/5 border-2 border-white/15 text-sm text-white placeholder:text-white/20 focus-ring"
                 />
               </div>
 
@@ -161,9 +164,9 @@ export const Contact: React.FC = () => {
               <div className="space-y-1.5">
                 <label
                   htmlFor="contact-message"
-                  className="text-xs text-ink-secondary"
+                  className="text-xs text-white/50 font-mono uppercase tracking-wider"
                 >
-                  ご相談内容・お問い合わせ内容
+                  ご相談内容
                 </label>
                 <textarea
                   id="contact-message"
@@ -173,7 +176,7 @@ export const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="ご相談内容をご入力ください..."
-                  className="w-full px-4 py-3 rounded-xl bg-white border border-black/[0.08] text-sm text-ink placeholder:text-ink-faint focus-ring resize-none"
+                  className="w-full px-4 py-3 bg-white/5 border-2 border-white/15 text-sm text-white placeholder:text-white/20 focus-ring resize-none"
                 />
               </div>
 
@@ -181,7 +184,7 @@ export const Contact: React.FC = () => {
               <motion.button
                 type="submit"
                 disabled={isSending}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-ink text-white font-medium text-sm hover:bg-ink/90 transition-colors disabled:opacity-50"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-pop-orange text-white font-bold text-sm border-2 border-pop-orange hover:bg-orange-600 hover:border-orange-600 transition-colors disabled:opacity-50"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -189,19 +192,6 @@ export const Contact: React.FC = () => {
                 <ArrowRight size={16} />
               </motion.button>
             </form>
-
-            {/* Handwritten decoration */}
-            <motion.p
-              className="absolute -right-4 bottom-0 text-4xl sm:text-5xl font-handwritten text-ink-faint/30 -rotate-6 select-none pointer-events-none hidden lg:block"
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-            >
-              Let's shape
-              <br />
-              your ideal.
-            </motion.p>
           </motion.div>
         </div>
       </div>

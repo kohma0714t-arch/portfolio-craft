@@ -1,125 +1,168 @@
-/* Google Fonts: Caveat for handwritten style */
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --bg-canvas: #ffffff;
-    --bg-subtle: #f8f8f8;
-    --text-primary: #111111;
-    --text-secondary: #555555;
-    --text-muted: #999999;
-    --border-hairline: rgba(0, 0, 0, 0.08);
-    --border-hairline-hover: rgba(0, 0, 0, 0.18);
-    --accent-primary: #111111;
+    /* Colors */
+    --cream: #FAF6EE;
+    --ink: #1A1A2E;
+    --pop-blue: #3B82F6;
+    --pop-orange: #F97316;
+    --pop-mint: #34D399;
+    --muted: #94A3B8;
+    --card-bg: #FFFFFF;
+    --section-alt: #1A1A2E;
+
+    /* Typography */
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', 'Noto Sans JP', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Shadows (Neo-Brutalism) */
+    --shadow-brutal: 6px 6px 0 0 var(--ink);
+    --shadow-brutal-hover: 3px 3px 0 0 var(--ink);
+
+    /* Border */
+    --border-brutal: 2px solid var(--ink);
+    --border-light: 1px solid rgba(26, 26, 46, 0.12);
   }
 
   html {
     scroll-behavior: smooth;
-    background-color: var(--bg-canvas);
+    background-color: var(--cream);
   }
 
   body {
-    background-color: var(--bg-canvas);
-    color: var(--text-primary);
-    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    background-color: var(--cream);
+    color: var(--ink);
+    font-family: var(--font-body);
     letter-spacing: -0.01em;
   }
 
-  /* Minimal scrollbar — light theme */
+  /* Scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #f5f5f5;
+    background: #f0ebe3;
   }
   ::-webkit-scrollbar-thumb {
-    background: #d0d0d0;
+    background: #c9c2b6;
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #b0b0b0;
+    background: #a39b8f;
   }
 }
 
-/* Handwritten font */
-.font-handwritten {
-  font-family: 'Caveat', cursive;
-}
+@layer components {
+  /* Neo-Brutalism Card */
+  .card-brutal {
+    background: var(--card-bg);
+    border: 2px solid var(--ink);
+    box-shadow: var(--shadow-brutal);
+    transition: all 0.2s ease;
+  }
+  .card-brutal:hover {
+    box-shadow: var(--shadow-brutal-hover);
+    transform: translate(3px, 3px);
+  }
 
-/* Input focus ring — light theme */
-.focus-ring {
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
-}
-.focus-ring:focus {
-  outline: none;
-  border-color: rgba(0, 0, 0, 0.3);
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
-}
+  /* Neo-Brutalism Card (Blue accent) */
+  .card-brutal-blue {
+    background: var(--card-bg);
+    border: 2px solid var(--pop-blue);
+    box-shadow: 6px 6px 0 0 var(--pop-blue);
+    transition: all 0.2s ease;
+  }
+  .card-brutal-blue:hover {
+    box-shadow: 3px 3px 0 0 var(--pop-blue);
+    transform: translate(3px, 3px);
+  }
 
-/* Section accent line */
-.section-accent::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 40px;
-  height: 2px;
-  background: #111111;
-}
+  /* Section Header (arti-lab style) */
+  .section-header {
+    @apply mb-12 flex items-center gap-3;
+  }
+  .section-header .section-line {
+    @apply h-px flex-1 bg-ink/15;
+  }
+  .section-header .section-number {
+    @apply text-xs font-mono tracking-widest text-pop-blue font-semibold;
+  }
 
-/* Card hover — light theme */
-.card-light {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-}
-.card-light:hover {
-  border-color: rgba(0, 0, 0, 0.12);
-  box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.08);
-}
+  /* Stamp Badge (techguild style) */
+  .stamp-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    border: 2px solid var(--ink);
+    transform: rotate(-2deg);
+  }
 
-/* Dark card variant */
-.card-dark {
-  background: #111111;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #ffffff;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-}
-.card-dark:hover {
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.3);
-}
+  /* Button styles */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold;
+    background-color: var(--pop-blue);
+    color: white;
+    border: 2px solid var(--pop-blue);
+    transition: all 0.2s ease;
+  }
+  .btn-primary:hover {
+    background-color: #2563EB;
+    border-color: #2563EB;
+  }
 
-/* Workflow connector */
-.workflow-connector {
-  position: relative;
-}
-.workflow-connector::after {
-  content: '→';
-  position: absolute;
-  right: -18px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #999;
-  font-size: 14px;
-}
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold;
+    background-color: transparent;
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    transition: all 0.2s ease;
+  }
+  .btn-secondary:hover {
+    background-color: var(--ink);
+    color: var(--cream);
+  }
 
-/* Hide scrollbar for carousel */
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+  /* Background texture text */
+  .text-texture {
+    position: absolute;
+    font-family: var(--font-display);
+    font-weight: 800;
+    white-space: nowrap;
+    color: var(--ink);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
 
-/* Modal overlay */
-.modal-overlay {
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  /* Focus ring */
+  .focus-ring {
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .focus-ring:focus {
+    outline: none;
+    border-color: var(--pop-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  }
+
+  /* Modal overlay */
+  .modal-overlay {
+    background: rgba(26, 26, 46, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Hide scrollbar for carousel */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }

@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { getAssetUrl } from '../utils/assets';
 
 interface WorkItem {
@@ -15,6 +15,7 @@ interface WorkItem {
   challenges: string[];
   status: 'published' | 'coming-soon';
   iconImage?: string;
+  accentColor: string;
 }
 
 const works: WorkItem[] = [
@@ -38,6 +39,7 @@ const works: WorkItem[] = [
       'AsyncStorageでの効率的なデータ永続化設計',
     ],
     status: 'published',
+    accentColor: 'pop-blue',
   },
   {
     id: 'unitime',
@@ -58,6 +60,7 @@ const works: WorkItem[] = [
       '講義データの効率的なローカルストレージ管理',
     ],
     status: 'published',
+    accentColor: 'pop-orange',
   },
   {
     id: 'portfolio',
@@ -66,185 +69,153 @@ const works: WorkItem[] = [
     title: 'Portfolio Site',
     subtitle: 'このポートフォリオサイト',
     description:
-      'React + TypeScript + Framer Motion で制作したポートフォリオサイト。AI感を排除し、人間が磨き上げたような手触り感のあるデザインを追求しました。',
+      'React + TypeScript + Framer Motion で制作したポートフォリオサイト。ネオブルータリズムとポップなカラーを取り入れ、親しみやすく洗練されたデザインを追求しました。',
     techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
     highlights: [
-      'AI-Nativeな開発プロセスの可視化',
-      '手書き風タイポグラフィによるクリエイティブ表現',
+      'ネオブルータリズム × ポップカラーの融合',
+      'レスポンシブかつインタラクティブなUI設計',
     ],
     challenges: [
-      'ライトテーマとダークビジュアルの融合',
+      'セクション番号付き構造的レイアウトの設計',
       'Framer Motionを活用した自然なアニメーション設計',
     ],
     status: 'published',
+    accentColor: 'pop-mint',
   },
 ];
 
 export const WorksStory: React.FC = () => {
-  const carouselRef = useRef<HTMLDivElement>(null);
   const [selectedWork, setSelectedWork] = useState<WorkItem | null>(null);
-  const [currentDot, setCurrentDot] = useState(0);
 
-  const scroll = (direction: 'left' | 'right') => {
-    if (!carouselRef.current) return;
-    const cardWidth = carouselRef.current.children[0]?.clientWidth || 360;
-    const gap = 24;
-    const scrollAmount = direction === 'left' ? -(cardWidth + gap) : cardWidth + gap;
-    carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  const getAccentBorder = (color: string) => {
+    switch (color) {
+      case 'pop-blue': return 'border-pop-blue';
+      case 'pop-orange': return 'border-pop-orange';
+      case 'pop-mint': return 'border-pop-mint';
+      default: return 'border-ink';
+    }
   };
 
-  const handleScroll = () => {
-    if (!carouselRef.current) return;
-    const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
-    const maxScroll = scrollWidth - clientWidth;
-    if (maxScroll <= 0) {
-      setCurrentDot(0);
-      return;
+  const getAccentShadow = (color: string) => {
+    switch (color) {
+      case 'pop-blue': return 'shadow-[6px_6px_0_0_#3B82F6]';
+      case 'pop-orange': return 'shadow-[6px_6px_0_0_#F97316]';
+      case 'pop-mint': return 'shadow-[6px_6px_0_0_#34D399]';
+      default: return 'shadow-brutal';
     }
-    const progress = scrollLeft / maxScroll;
-    setCurrentDot(Math.round(progress * (works.length - 1)));
+  };
+
+  const getAccentShadowHover = (color: string) => {
+    switch (color) {
+      case 'pop-blue': return 'hover:shadow-[3px_3px_0_0_#3B82F6]';
+      case 'pop-orange': return 'hover:shadow-[3px_3px_0_0_#F97316]';
+      case 'pop-mint': return 'hover:shadow-[3px_3px_0_0_#34D399]';
+      default: return 'hover:shadow-brutal-hover';
+    }
+  };
+
+  const getAccentBg = (color: string) => {
+    switch (color) {
+      case 'pop-blue': return 'bg-pop-blue';
+      case 'pop-orange': return 'bg-pop-orange';
+      case 'pop-mint': return 'bg-pop-mint';
+      default: return 'bg-ink';
+    }
   };
 
   return (
     <>
-      <section id="works" className="py-28 bg-canvas-subtle relative">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="works" className="py-24 sm:py-32 relative overflow-hidden">
+        {/* Background texture */}
+        <div className="text-texture text-[clamp(100px,14vw,200px)] bottom-8 right-[-5%] opacity-[0.03]">
+          WORKS
+        </div>
+
+        <div className="max-w-[1200px] mx-auto px-5 sm:px-8">
           {/* Header */}
           <motion.div
-            className="flex items-end justify-between mb-12"
+            className="mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6 }}
           >
-            <div>
-              <div className="flex items-center gap-4 text-xs font-mono tracking-widest text-ink-muted uppercase mb-4">
-                <span>03</span>
-                <span className="w-8 h-px bg-ink-faint" />
-                <span>Works</span>
-              </div>
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-xs font-mono tracking-[0.2em] text-pop-blue font-semibold">04</span>
+              <span className="w-8 h-px bg-pop-blue" />
+              <span className="text-xs font-mono tracking-[0.2em] text-ink-muted uppercase">Works</span>
             </div>
-            <button
-              className="hidden sm:inline-flex items-center gap-2 text-sm text-ink-secondary hover:text-ink transition-colors group"
-            >
-              <span>View all</span>
-              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-            </button>
+            <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-ink tracking-tight leading-tight">
+              制作実績
+            </h2>
           </motion.div>
 
-          {/* Carousel */}
-          <div className="relative">
-            <div
-              ref={carouselRef}
-              className="flex gap-6 overflow-x-auto hide-scrollbar pb-4 snap-x snap-mandatory"
-              onScroll={handleScroll}
-            >
-              {works.map((work) => (
-                <motion.div
-                  key={work.id}
-                  className="flex-shrink-0 w-[320px] sm:w-[360px] snap-start cursor-pointer group"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5 }}
-                  whileHover={{ y: -4 }}
-                  onClick={() => work.status === 'published' && setSelectedWork(work)}
-                >
-                  {/* Card Thumbnail */}
-                  <div className="relative rounded-2xl overflow-hidden bg-ink aspect-[4/3] mb-4">
-                    {work.iconImage ? (
-                      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#1b1e2e] to-[#0d0f18] p-6">
-                        <img
-                          src={work.iconImage}
-                          alt={work.title}
-                          className="w-24 h-24 sm:w-28 sm:h-28 object-contain rounded-2xl shadow-xl transition-transform duration-300 group-hover:scale-105"
-                        />
-                      </div>
-                    ) : (
-                      /* Placeholder visual — project icon/text */
-                      <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6">
-                        <div className="text-5xl font-display font-bold text-white/20">
-                          {work.projectNumber}
-                        </div>
-                        <h3 className="text-lg font-bold text-white text-center">
-                          {work.title}
-                        </h3>
-                        <p className="text-xs text-white/50 text-center">
-                          {work.subtitle}
-                        </p>
-                      </div>
-                    )}
-
-                    {/* Category badge */}
-                    <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm text-[10px] font-mono text-white/70 uppercase">
-                      {work.category}
+          {/* Works Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {works.map((work, idx) => (
+              <motion.div
+                key={work.id}
+                className={`bg-card-bg border-2 ${getAccentBorder(work.accentColor)} ${getAccentShadow(work.accentColor)} cursor-pointer transition-all duration-200 ${getAccentShadowHover(work.accentColor)} hover:translate-x-[3px] hover:translate-y-[3px] group`}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                onClick={() => work.status === 'published' && setSelectedWork(work)}
+              >
+                {/* Card Thumbnail */}
+                <div className="relative bg-ink aspect-[4/3] overflow-hidden">
+                  {work.iconImage ? (
+                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#1b1e2e] to-[#0d0f18] p-6">
+                      <img
+                        src={work.iconImage}
+                        alt={work.title}
+                        className="w-24 h-24 sm:w-28 sm:h-28 object-contain rounded-2xl shadow-xl transition-transform duration-300 group-hover:scale-105"
+                      />
                     </div>
-
-                    {/* Project number badge */}
-                    <div className="absolute top-4 right-4 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-sm text-[10px] font-mono text-white/60">
-                      {work.projectNumber}
+                  ) : (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6">
+                      <div className="text-5xl font-display font-extrabold text-white/15">
+                        {work.projectNumber}
+                      </div>
+                      <h3 className="text-lg font-bold text-white text-center">
+                        {work.title}
+                      </h3>
+                      <p className="text-xs text-white/50 text-center">
+                        {work.subtitle}
+                      </p>
                     </div>
+                  )}
+
+                  {/* Number badge */}
+                  <div className={`absolute top-3 left-3 px-2.5 py-1 ${getAccentBg(work.accentColor)} text-white text-[10px] font-mono font-bold`}>
+                    {work.projectNumber}
                   </div>
 
-                  {/* Card Info */}
-                  <div className="px-1">
-                    <h3 className="text-base font-semibold text-ink mb-1 group-hover:text-ink-secondary transition-colors">
-                      {work.title}
-                    </h3>
-                    <p className="text-xs text-ink-muted mb-3">{work.subtitle}</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {work.techStack.map((tech, i) => (
-                        <span
-                          key={i}
-                          className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-canvas-muted text-ink-secondary"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                  {/* Category badge */}
+                  <div className="absolute top-3 right-3 px-2.5 py-1 bg-white/10 backdrop-blur-sm text-[10px] font-mono text-white/70 uppercase">
+                    {work.category}
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                </div>
 
-            {/* Navigation */}
-            <div className="flex items-center justify-between mt-8">
-              {/* Dots */}
-              <div className="flex gap-2">
-                {works.map((_, idx) => (
-                  <button
-                    key={idx}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      currentDot === idx ? 'bg-ink w-6' : 'bg-ink-faint'
-                    }`}
-                    onClick={() => {
-                      if (!carouselRef.current) return;
-                      const cardWidth = carouselRef.current.children[0]?.clientWidth || 360;
-                      carouselRef.current.scrollTo({
-                        left: idx * (cardWidth + 24),
-                        behavior: 'smooth',
-                      });
-                    }}
-                  />
-                ))}
-              </div>
-
-              {/* Arrows */}
-              <div className="flex gap-2">
-                <button
-                  onClick={() => scroll('left')}
-                  className="w-10 h-10 rounded-full border border-black/[0.1] flex items-center justify-center hover:bg-canvas-muted transition-colors"
-                >
-                  <ChevronLeft size={18} className="text-ink-secondary" />
-                </button>
-                <button
-                  onClick={() => scroll('right')}
-                  className="w-10 h-10 rounded-full border border-black/[0.1] flex items-center justify-center hover:bg-canvas-muted transition-colors"
-                >
-                  <ChevronRight size={18} className="text-ink-secondary" />
-                </button>
-              </div>
-            </div>
+                {/* Card Info */}
+                <div className="p-5">
+                  <h3 className="text-base font-bold text-ink mb-1 font-display group-hover:text-pop-blue transition-colors">
+                    {work.title}
+                  </h3>
+                  <p className="text-xs text-ink-muted mb-3">{work.subtitle}</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {work.techStack.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="text-[10px] font-mono px-2 py-0.5 border border-ink/15 text-ink-secondary"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -260,7 +231,7 @@ export const WorksStory: React.FC = () => {
             onClick={() => setSelectedWork(null)}
           >
             <motion.div
-              className="bg-white rounded-2xl shadow-modal max-w-2xl w-full max-h-[85vh] overflow-y-auto"
+              className="bg-card-bg border-2 border-ink shadow-brutal max-w-2xl w-full max-h-[85vh] overflow-y-auto"
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -268,16 +239,16 @@ export const WorksStory: React.FC = () => {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Header */}
-              <div className="relative p-6 sm:p-8 border-b border-black/[0.06]">
+              <div className="relative p-6 sm:p-8 border-b-2 border-ink">
                 <button
                   onClick={() => setSelectedWork(null)}
-                  className="absolute top-4 right-4 w-8 h-8 rounded-full bg-canvas-muted flex items-center justify-center hover:bg-canvas-subtle transition-colors"
+                  className="absolute top-4 right-4 w-8 h-8 border-2 border-ink flex items-center justify-center hover:bg-ink hover:text-cream transition-colors"
                 >
-                  <X size={16} className="text-ink-secondary" />
+                  <X size={16} />
                 </button>
 
                 {/* Thumbnail */}
-                <div className="rounded-xl overflow-hidden bg-ink aspect-video mb-6">
+                <div className="overflow-hidden bg-ink aspect-video mb-6">
                   {selectedWork.iconImage ? (
                     <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#1b1e2e] to-[#0d0f18] p-6">
                       <img
@@ -289,7 +260,7 @@ export const WorksStory: React.FC = () => {
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
                       <div className="text-center">
-                        <p className="text-6xl font-display font-bold text-white/15 mb-2">
+                        <p className="text-6xl font-display font-extrabold text-white/15 mb-2">
                           {selectedWork.projectNumber}
                         </p>
                         <p className="text-lg font-bold text-white">
@@ -313,7 +284,7 @@ export const WorksStory: React.FC = () => {
                     {selectedWork.techStack.map((t, i) => (
                       <span
                         key={i}
-                        className="text-[10px] font-mono px-2 py-1 rounded-full bg-canvas-muted text-ink-secondary"
+                        className="text-[10px] font-mono px-2 py-1 border border-ink/15 text-ink-secondary"
                       >
                         {t}
                       </span>
@@ -330,7 +301,7 @@ export const WorksStory: React.FC = () => {
 
                 {selectedWork.highlights.length > 0 && (
                   <div>
-                    <h3 className="text-xs font-mono text-ink-muted uppercase tracking-wider mb-3">
+                    <h3 className="text-xs font-mono text-pop-blue uppercase tracking-wider mb-3 font-semibold">
                       こだわったポイント
                     </h3>
                     <ul className="space-y-2">
@@ -339,7 +310,7 @@ export const WorksStory: React.FC = () => {
                           key={i}
                           className="flex items-start gap-2 text-sm text-ink-secondary"
                         >
-                          <span className="text-ink-faint mt-0.5">●</span>
+                          <span className="text-pop-blue mt-0.5 font-bold">→</span>
                           {h}
                         </li>
                       ))}
@@ -349,7 +320,7 @@ export const WorksStory: React.FC = () => {
 
                 {selectedWork.challenges.length > 0 && (
                   <div>
-                    <h3 className="text-xs font-mono text-ink-muted uppercase tracking-wider mb-3">
+                    <h3 className="text-xs font-mono text-pop-orange uppercase tracking-wider mb-3 font-semibold">
                       技術的な挑戦
                     </h3>
                     <ul className="space-y-2">
@@ -358,7 +329,7 @@ export const WorksStory: React.FC = () => {
                           key={i}
                           className="flex items-start gap-2 text-sm text-ink-secondary"
                         >
-                          <span className="text-ink-faint mt-0.5">●</span>
+                          <span className="text-pop-orange mt-0.5 font-bold">→</span>
                           {c}
                         </li>
                       ))}
