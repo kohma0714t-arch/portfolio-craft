@@ -12,7 +12,7 @@ export const worksData: WorkItem[] = [
     iconImage: getAssetUrl('/images/StudyStack_icon.png'),
     screenshotImage: getAssetUrl('/images/StudyStack1.png'),
     qrCodeImage: getAssetUrl('/images/StudyStackQR.png'),
-    period: '2025.10 - 現在（継続開発中）',
+    period: '2026.01 - 現在（継続開発中）',
     role: '企画・UI/UXデザイン・フルスタック実装（個人開発）',
     description:
       '試験対策や資格学習で生じる「すでに覚えた問題に時間を取られ、苦手な問題が後回しになる」という課題を解決するために制作したカード型学習アプリです。',
@@ -56,7 +56,7 @@ export const worksData: WorkItem[] = [
     iconImage: getAssetUrl('/images/UniTime_icon.png'),
     screenshotImage: getAssetUrl('/images/UniTimeSc1.png'),
     qrCodeImage: getAssetUrl('/images/UniTimeScQR.png'),
-    period: '2025.08 - 2025.10',
+    period: '2025.11',
     role: '要件定義・UI設計・モバイル実装（個人開発）',
     description:
       '大学の講義棟や教室番号、課題の締切日時は分散しがちです。「アプリを開いた瞬間に、今日これから行くべき教室がひと目でわかる」ことを最優先に設計しました。',
@@ -97,7 +97,7 @@ export const worksData: WorkItem[] = [
     title: 'Portfolio Site',
     subtitle: 'このポートフォリオサイト',
     tagline: 'ネオブルータリズム × ポップカラーで魅せる、学生エンジニアの挑戦',
-    period: '2026.02 - 2026.10',
+    period: '2026.10',
     role: '企画・UI/UXデザイン・フロントエンド実装',
     description:
       'React + TypeScript + Framer Motion で制作したポートフォリオサイト。ネオブルータリズムとポップなカラーを取り入れ、親しみやすく洗練されたデザインを追求しました。',

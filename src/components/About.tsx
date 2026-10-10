@@ -98,7 +98,7 @@ export const About: React.FC = () => {
                 <p className="text-xs text-ink-muted mt-1">リリースアプリ</p>
               </div>
               <div>
-                <p className="text-3xl sm:text-4xl font-display font-extrabold text-pop-blue">2026</p>
+                <p className="text-3xl sm:text-4xl font-display font-extrabold text-pop-blue">2025</p>
                 <p className="text-xs text-ink-muted mt-1">活動開始</p>
               </div>
               <div>

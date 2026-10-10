@@ -26,14 +26,14 @@ export const coreValues = [
 
 export const timelineData: TimelineItem[] = [
   {
-    period: '2024.04',
+    period: '2025.04',
     title: '大学入学（情報工学専攻）',
     subtitle: 'コンピュータサイエンスの探求開始',
     description:
-      'アルゴリズム、データ構造、C言語など基礎を学びつつ、Webおよびモバイルアプリ開発の独学を開始。',
+      'アルゴリズム、データ構造、C言語など基礎を学びつつ、React NativeやTypeScriptによるアプリ開発の独学を開始。',
   },
   {
-    period: '2025.08',
+    period: '2025.11',
     title: 'UniTime 開発',
     subtitle: '学生生活の課題を解決する時間割アプリ',
     description:
@@ -41,25 +41,25 @@ export const timelineData: TimelineItem[] = [
     badge: 'Mobile App',
   },
   {
-    period: '2025.10',
-    title: 'Study Stack 開発着手',
+    period: '2026.01',
+    title: 'Study Stack 開発',
     subtitle: '忘却曲線を味方にする反復学習アプリ',
     description:
       '苦手カードの自動優先表示ロジックを搭載したカード学習アプリを開発。実機での快適なスワイプ操作を追求。',
     badge: 'Mobile App',
   },
   {
-    period: '2025.12',
+    period: '2026.07',
     title: 'ハッカソン 優秀賞 受賞',
-    subtitle: 'フロントエンドリードとしてプロダクトを牽引',
+    subtitle: '生成AI Procthon 2026 チーム「岡山ゴミ箱探検隊」',
     description:
       'チーム開発ハッカソンに参加。迅速なUIプロトタイピングと実装を行い、アイデアと完成度が高く評価され優秀賞を受賞。',
     badge: 'Award 🏆',
   },
   {
-    period: '2026.02 - 現在',
-    title: 'ポートフォリオ v2 制作 & 継続開発',
-    subtitle: 'ネオブルータリズム × ポップカラー',
+    period: '2026.10',
+    title: 'ポートフォリオ v2 制作',
+    subtitle: 'ネオブルータリズム × 階層構造UI',
     description:
       '自身の開発ストーリーと制作物をより魅力的に伝えるため、階層構造を持つモダンなポートフォリオを構築。',
     badge: 'Current',
