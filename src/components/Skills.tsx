@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Smartphone,
@@ -175,6 +176,17 @@ export const Skills: React.FC = () => {
               ))}
             </motion.div>
           </div>
+        </div>
+
+        {/* Link to Detail Page */}
+        <div className="mt-16 pt-8 border-t border-white/10 flex justify-center">
+          <Link
+            to="/skills"
+            className="inline-flex items-center gap-2 text-sm font-bold px-6 py-3 bg-pop-mint text-ink border-2 border-pop-mint shadow-[4px_4px_0_0_#FFFFFF] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all group"
+          >
+            <span>全スキル詳細 & ワークフロー解説を見る</span>
+            <ArrowRight size={16} className="text-ink group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </div>
     </section>

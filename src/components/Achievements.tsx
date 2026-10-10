@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Trophy, Calendar, Users, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Trophy, Calendar, Users, ExternalLink, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { getAssetUrl } from '../utils/assets';
 
 const itemVariants = {
@@ -160,26 +161,36 @@ export const Achievements: React.FC = () => {
               </p>
             </div>
 
-            {/* Links */}
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="https://www.serio.inc/topics/2026/04/22/20260422/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary text-xs py-2 px-4 gap-1.5"
+            {/* Links & Detail CTA */}
+            <div className="space-y-4 pt-2">
+              <Link
+                to="/achievements"
+                className="inline-flex items-center gap-2 text-sm font-bold px-5 py-2.5 bg-pop-orange text-white border-2 border-ink shadow-[3px_3px_0_0_#1A1A2E] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all group"
               >
-                <span>開催概要</span>
-                <ExternalLink size={12} />
-              </a>
-              <a
-                href="https://www.serio.inc/topics/2026/07/28/20260728/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary text-xs py-2 px-4 gap-1.5"
-              >
-                <span>成果発表レポート</span>
-                <ExternalLink size={12} />
-              </a>
+                <span>ハッカソン詳細レポートを見る</span>
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href="https://www.serio.inc/topics/2026/04/22/20260422/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary text-xs py-2 px-3 gap-1.5"
+                >
+                  <span>開催概要</span>
+                  <ExternalLink size={12} />
+                </a>
+                <a
+                  href="https://www.serio.inc/topics/2026/07/28/20260728/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary text-xs py-2 px-3 gap-1.5"
+                >
+                  <span>主催公式レポート</span>
+                  <ExternalLink size={12} />
+                </a>
+              </div>
             </div>
           </motion.div>
         </div>

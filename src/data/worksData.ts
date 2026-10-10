@@ -1,0 +1,134 @@
+import { WorkItem } from '../types/portfolio';
+import { getAssetUrl } from '../utils/assets';
+
+export const worksData: WorkItem[] = [
+  {
+    id: 'studystack',
+    projectNumber: '01',
+    category: 'Mobile App',
+    title: 'Study Stack',
+    subtitle: '暗記学習・反復復習効率化アプリ',
+    tagline: '「忘却曲線」を味方にする、自分専用のスマート単語帳',
+    iconImage: getAssetUrl('/images/StudyStack_icon.png'),
+    screenshotImage: getAssetUrl('/images/StudyStack1.png'),
+    qrCodeImage: getAssetUrl('/images/StudyStackQR.png'),
+    period: '2025.10 - 現在（継続開発中）',
+    role: '企画・UI/UXデザイン・フルスタック実装（個人開発）',
+    description:
+      '試験対策や資格学習で生じる「すでに覚えた問題に時間を取られ、苦手な問題が後回しになる」という課題を解決するために制作したカード型学習アプリです。',
+    longDescription: [
+      '大学の定期試験や資格の勉強時、従来の単語帳やフラッシュカードでは「すでに完璧に覚えたカード」も等しくめくってしまい、復習効率が落ちてしまうという自身の不満から企画しました。',
+      'Study Stack は、ユーザーの回答履歴と正答率を即座にトラッキングし、間違えやすいカードや記憶定着度が低いカードを自動アルゴリズムで優先出題します。',
+      'オフライン完全対応により、通学中の満員電車や地下鉄などの電波が届きにくい環境でもストレスなく学習を継続できます。',
+    ],
+    techStack: ['React Native', 'Expo', 'TypeScript', 'AsyncStorage'],
+    highlights: [
+      '片手スワイプで直感的に覚えた/苦手を選択できる軽快なUI/UX',
+      'オフライン完全対応で電波状況に左右されない高速起動',
+      '苦手カードを自動で優先表示する反復学習出題ロジック',
+      '学習履歴や正答率のリアルタイムダッシュボード可視化',
+    ],
+    challenges: [
+      '正答率や学習間隔のリアルタイム計算処理をUIスレッドをブロックせず高速に実行する工夫',
+      '大量の学習カードデータ（テキスト・画像等）をAsyncStorageで破損なく高効率に管理・シリアライズする設計',
+      'スマートフォン実機でのスワイプジェスチャーの心地よいフィードバック（Haptics / Springアニメーション）',
+    ],
+    architecture: [
+      'State Management: 画面間の同期にカスタムフックと軽量ローカルステートを採用',
+      'Storage Layer: AsyncStorageをラップしたType-SafeなRepository層を構築',
+      'Navigation: Expo Routerによる直感的なタブ＆スタックナビゲーション',
+    ],
+    futurePlans: [
+      'エビングハウスの忘却曲線アルゴリズム（SRS: Spaced Repetition System）の高度化',
+      'クラウド同期・複数端末間のバックアップ機能（Supabase連携）',
+      'カメラOCRによる教科書・ノートからのワンタップ単語カード生成機能',
+    ],
+    status: 'published',
+    accentColor: 'pop-blue',
+  },
+  {
+    id: 'unitime',
+    projectNumber: '02',
+    category: 'Mobile App',
+    title: 'UniTime',
+    subtitle: '大学生向け時間割・タスク統合管理',
+    tagline: '講義棟もレポート締切も、アプリを開いた瞬間にひと目で把握',
+    iconImage: getAssetUrl('/images/UniTime_icon.png'),
+    screenshotImage: getAssetUrl('/images/UniTimeSc1.png'),
+    qrCodeImage: getAssetUrl('/images/UniTimeScQR.png'),
+    period: '2025.08 - 2025.10',
+    role: '要件定義・UI設計・モバイル実装（個人開発）',
+    description:
+      '大学の講義棟や教室番号、課題の締切日時は分散しがちです。「アプリを開いた瞬間に、今日これから行くべき教室がひと目でわかる」ことを最優先に設計しました。',
+    longDescription: [
+      '大学キャンパスは広く、講義ごとに教室番号や棟名がバラバラで「次の教室どこだっけ？」と毎回シラバスやポータルサイトを開くストレスがありました。さらに講義ごとに課されるレポートの締切も別管理になりがちです。',
+      'UniTimeは、曜日・時限マトリクスだけでなく「今現在の時刻」にフォーカスし、ダッシュボード上で次に向かうべき教室と直近のタスクを巨大カードで即座に提示します。',
+      'AppleのHuman Interface Guidelinesを深く意識し、視認性の高いタイポグラフィと直感的な操作感を実現しました。',
+    ],
+    techStack: ['React Native', 'Expo', 'TypeScript', 'AsyncStorage'],
+    highlights: [
+      '文字のコントラストと余白を徹底的に追求した、見やすさ重視のデザイン',
+      '時間割とレポート締切が連動した統合タスクビュー',
+      '次に行く教室・講義がトップで一番大きく表示される「Now」カード機能',
+      '学期ごとの時間割切り替えや教室色分けの柔軟なカスタマイズ',
+    ],
+    challenges: [
+      'HIG（Human Interface Guidelines）に準拠したグリッドレイアウトと視覚的階層の最適化',
+      '複雑な講義データ（時限、教室、担当教員、単位数、出席回数等）のリレーショナルなモデル設計',
+      '講義開始前のプッシュ通知・リマインダー連携の実装',
+    ],
+    architecture: [
+      'Domain Model: 講義・時間割・タスクを型安全に分離・管理',
+      'UI Layer: コンポーネントの再利用性を高めたアトミックなUI設計',
+      'Theme: ダークモード/ライトモード両対応のカラーパレット定義',
+    ],
+    futurePlans: [
+      '大学ポータルサイトとのシラバスデータ自動連携・インポート',
+      '友人間での時間割共有・空きコママッチング機能',
+      'ウィジェット対応（iOS Lock Screen / Home Screen）',
+    ],
+    status: 'published',
+    accentColor: 'pop-orange',
+  },
+  {
+    id: 'portfolio',
+    projectNumber: '03',
+    category: 'Web',
+    title: 'Portfolio Site',
+    subtitle: 'このポートフォリオサイト',
+    tagline: 'ネオブルータリズム × ポップカラーで魅せる、学生エンジニアの挑戦',
+    period: '2026.02 - 2026.10',
+    role: '企画・UI/UXデザイン・フロントエンド実装',
+    description:
+      'React + TypeScript + Framer Motion で制作したポートフォリオサイト。ネオブルータリズムとポップなカラーを取り入れ、親しみやすく洗練されたデザインを追求しました。',
+    longDescription: [
+      '単に実績を並べるだけでなく、訪問者がワクワクし「この人と一緒に開発してみたい」と思ってもらえるようなサイトを目指しました。',
+      '海外のモダンなネオブルータリズム（太い黒境界線とオフセットシャドウ）と日本のポップで親しみやすい配色（クリーム背景にブルーとオレンジのアクセント）を融合させました。',
+      'さらに、トップでの一覧性と個別深掘りページでの詳細情報提供を両立する階層構造アーキテクチャを採用しています。',
+    ],
+    techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'React Router', 'Vite'],
+    highlights: [
+      'ネオブルータリズム × ポップカラーを調和させた独自のデザインシステム',
+      'トップの要約から各作品・実績・スキルの個別詳細へと潜れる階層構造ナビゲーション',
+      'Framer Motion による滑らかで軽快なマイクロインタラクション',
+      'GitHub PagesでのSPA配信・リフレッシュを考慮した構成',
+    ],
+    challenges: [
+      'セクション番号付き構造的レイアウト（§01〜§06）と詳細画面の整合性維持',
+      'インパクトと可読性を両立するタイポグラフィ（Space Grotesk + 日本語フォント）の最適化',
+      'アニメーション過多によるパフォーマンス低下を防ぐためのGPUアクセラレーション活用',
+    ],
+    architecture: [
+      'SPA Routing: React Router による階層的ルート定義とURL同期',
+      'Design Tokens: CSSカスタム変数とTailwind設定の統合設計',
+      'Component Architecture: 再利用可能なネオブルータリズム共通コンポーネント群',
+    ],
+    futurePlans: [
+      'ブログ・技術記事セクション（Zenn / Qiita API連携）の追加',
+      'インタラクティブな3D要素（Three.js / React Three Fiber）の実験的導入',
+      '多言語対応（英語 / 日本語）の切り替え機能',
+    ],
+    status: 'published',
+    accentColor: 'pop-mint',
+  },
+];

@@ -1,29 +1,37 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { About } from './components/About';
-import { Skills } from './components/Skills';
-import { WorksStory } from './components/WorksStory';
-import { Achievements } from './components/Achievements';
-import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
+import { ScrollToTop } from './components/ScrollToTop';
+import { HomePage } from './pages/HomePage';
+import { AboutPage } from './pages/AboutPage';
+import { SkillsPage } from './pages/SkillsPage';
+import { WorksPage } from './pages/WorksPage';
+import { WorkDetailPage } from './pages/WorkDetailPage';
+import { AchievementsPage } from './pages/AchievementsPage';
 
 export const App: React.FC = () => {
   return (
-    <div className="relative min-h-screen bg-cream text-ink">
-      <Navbar />
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <ScrollToTop />
+      <div className="relative min-h-screen bg-cream text-ink flex flex-col justify-between selection:bg-pop-blue selection:text-white">
+        <Navbar />
 
-      <main className="relative">
-        <Hero />
-        <About />
-        <Skills />
-        <WorksStory />
-        <Achievements />
-        <Contact />
-      </main>
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/skills" element={<SkillsPage />} />
+            <Route path="/works" element={<WorksPage />} />
+            <Route path="/works/:id" element={<WorkDetailPage />} />
+            <Route path="/achievements" element={<AchievementsPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </div>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 };
 

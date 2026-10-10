@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import { getAssetUrl } from '../utils/assets';
 
 const sectionVariants = {
@@ -103,6 +105,17 @@ export const About: React.FC = () => {
                 <p className="text-3xl sm:text-4xl font-display font-extrabold text-pop-orange">🏆</p>
                 <p className="text-xs text-ink-muted mt-1">ハッカソン受賞</p>
               </div>
+            </div>
+
+            {/* Link to Detail Page */}
+            <div className="pt-4">
+              <Link
+                to="/about"
+                className="inline-flex items-center gap-2 text-sm font-bold px-5 py-2.5 bg-white text-ink border-2 border-ink shadow-[3px_3px_0_0_#1A1A2E] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all group"
+              >
+                <span>詳しいプロフィール・経歴を見る</span>
+                <ArrowRight size={16} className="text-pop-blue group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
           </motion.div>
         </motion.div>
