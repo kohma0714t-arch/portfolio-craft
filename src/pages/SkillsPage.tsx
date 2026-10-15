@@ -49,22 +49,11 @@ export const SkillsPage: React.FC = () => {
                 >
                   <div>
                     {/* Top row */}
-                    <div className="flex items-start justify-between gap-4 mb-4">
-                      <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 bg-cream border-2 border-ink flex items-center justify-center flex-shrink-0">
-                          <Icon size={22} className="text-ink" />
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-bold font-display text-ink">{tech.name}</h3>
-                          <span className="text-xs font-mono text-pop-blue font-bold">
-                            {tech.experience} 経験
-                          </span>
-                        </div>
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-12 h-12 bg-cream border-2 border-ink flex items-center justify-center flex-shrink-0">
+                        <Icon size={22} className="text-ink" />
                       </div>
-
-                      <span className="text-[11px] font-mono font-bold px-2 py-0.5 bg-ink text-white">
-                        {tech.level}
-                      </span>
+                      <h3 className="text-xl font-bold font-display text-ink">{tech.name}</h3>
                     </div>
 
                     <p className="text-xs sm:text-sm text-ink-secondary leading-relaxed mb-4">

@@ -1,37 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, ArrowRight, Github } from 'lucide-react';
+import { Mail, Github, ExternalLink, Briefcase } from 'lucide-react';
+
+const CROWDWORKS_URL = 'https://crowdworks.jp/public/employees/4281520?ref=share_url_wkprofile';
 
 export const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
-  const [isSending, setIsSending] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSending(true);
-
-    const subject = encodeURIComponent(
-      `【ポートフォリオ経由】${formData.name} さんからのお問い合わせ`
-    );
-    const body = encodeURIComponent(
-      `お名前: ${formData.name}\nメールアドレス: ${formData.email}\n\n${formData.message}`
-    );
-
-    window.location.href = `mailto:kohma0714.t@gmail.com?subject=${subject}&body=${body}`;
-    setTimeout(() => setIsSending(false), 1500);
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
   const contactLinks = [
+    {
+      icon: Briefcase,
+      label: 'CrowdWorks',
+      value: 'クラウドワークス プロフィール',
+      href: CROWDWORKS_URL,
+      highlight: true,
+    },
     {
       icon: Mail,
       label: 'Email',
@@ -69,7 +50,7 @@ export const Contact: React.FC = () => {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left: Text & Links */}
           <motion.div
             className="lg:col-span-5"
@@ -84,7 +65,7 @@ export const Contact: React.FC = () => {
             <p className="text-sm text-white/60 leading-relaxed mb-8">
               Webアプリ・スマホアプリの開発依頼、
               <br />
-              案件のご相談、カジュアル面談など
+              案件のご相談、受託開発など
               <br />
               お気軽にご連絡ください。
             </p>
@@ -97,21 +78,36 @@ export const Contact: React.FC = () => {
                   href={link.href}
                   target={link.href.startsWith('http') ? '_blank' : undefined}
                   rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="flex items-center gap-3 text-sm text-white/60 hover:text-white transition-colors group"
+                  className={`flex items-center gap-3 text-sm transition-colors group p-2.5 -mx-2.5 rounded ${
+                    link.highlight
+                      ? 'bg-pop-orange/10 border border-pop-orange/30 text-white'
+                      : 'text-white/60 hover:text-white'
+                  }`}
                 >
-                  <div className="w-10 h-10 border-2 border-white/20 flex items-center justify-center group-hover:border-pop-mint group-hover:bg-pop-mint/10 transition-all">
-                    <link.icon size={16} className="text-white/60 group-hover:text-pop-mint transition-colors" />
+                  <div
+                    className={`w-10 h-10 border-2 flex items-center justify-center transition-all ${
+                      link.highlight
+                        ? 'border-pop-orange bg-pop-orange/20 text-pop-orange'
+                        : 'border-white/20 text-white/60 group-hover:border-pop-mint group-hover:bg-pop-mint/10 group-hover:text-pop-mint'
+                    }`}
+                  >
+                    <link.icon size={16} />
                   </div>
-                  <div>
+                  <div className="flex-1 min-w-0">
                     <p className="text-[10px] font-mono text-white/40 uppercase">{link.label}</p>
-                    <p className="text-xs font-mono text-white/70 group-hover:text-white transition-colors">{link.value}</p>
+                    <p className="text-xs font-mono truncate text-white/80 group-hover:text-white transition-colors">
+                      {link.value}
+                    </p>
                   </div>
+                  {link.href.startsWith('http') && (
+                    <ExternalLink size={14} className="text-white/30 group-hover:text-white/70 transition-colors ml-auto mr-1" />
+                  )}
                 </a>
               ))}
             </div>
           </motion.div>
 
-          {/* Right: Form */}
+          {/* Right: CrowdWorks CTA Card */}
           <motion.div
             className="lg:col-span-7"
             initial={{ opacity: 0, y: 30 }}
@@ -119,79 +115,42 @@ export const Contact: React.FC = () => {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Name */}
-              <div className="space-y-1.5">
-                <label
-                  htmlFor="contact-name"
-                  className="text-xs text-white/50 font-mono uppercase tracking-wider"
-                >
-                  お名前
-                </label>
-                <input
-                  id="contact-name"
-                  name="name"
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="山田 太郎"
-                  className="w-full px-4 py-3 bg-white/5 border-2 border-white/15 text-sm text-white placeholder:text-white/20 focus-ring"
-                />
+            <div className="border-2 border-white/20 bg-white/[0.04] backdrop-blur-sm p-6 sm:p-8 relative shadow-[6px_6px_0_0_#FF6B35]">
+              {/* Badge */}
+              <div className="flex items-center justify-between gap-2 mb-6">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-pop-orange/20 border border-pop-orange/40 text-pop-orange text-[11px] font-mono font-semibold tracking-wider uppercase">
+                  <span className="w-2 h-2 rounded-full bg-pop-orange animate-pulse" />
+                  CrowdWorks
+                </span>
+                <span className="text-xs font-mono text-white/40">お仕事受付中</span>
               </div>
 
-              {/* Email */}
-              <div className="space-y-1.5">
-                <label
-                  htmlFor="contact-email"
-                  className="text-xs text-white/50 font-mono uppercase tracking-wider"
-                >
-                  メールアドレス
-                </label>
-                <input
-                  id="contact-email"
-                  name="email"
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="example@mail.com"
-                  className="w-full px-4 py-3 bg-white/5 border-2 border-white/15 text-sm text-white placeholder:text-white/20 focus-ring"
-                />
-              </div>
+              {/* Title & Description */}
+              <h3 className="text-xl sm:text-2xl font-bold text-white font-display mb-3">
+                クラウドワークス経由で相談する
+              </h3>
+              <p className="text-sm text-white/70 leading-relaxed mb-8">
+                Webサイト制作、React / Next.js、React Native（Expo）を用いたモバイルアプリ開発など、案件のご相談やお見積りはクラウドワークスよりスムーズにお取引いただけます。
+              </p>
 
-              {/* Message */}
-              <div className="space-y-1.5">
-                <label
-                  htmlFor="contact-message"
-                  className="text-xs text-white/50 font-mono uppercase tracking-wider"
-                >
-                  ご相談内容
-                </label>
-                <textarea
-                  id="contact-message"
-                  name="message"
-                  required
-                  rows={4}
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="ご相談内容をご入力ください..."
-                  className="w-full px-4 py-3 bg-white/5 border-2 border-white/15 text-sm text-white placeholder:text-white/20 focus-ring resize-none"
-                />
-              </div>
-
-              {/* Submit */}
-              <motion.button
-                type="submit"
-                disabled={isSending}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-pop-orange text-white font-bold text-sm border-2 border-pop-orange hover:bg-orange-600 hover:border-orange-600 transition-colors disabled:opacity-50"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
+              {/* Action Button */}
+              <motion.a
+                href={CROWDWORKS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 bg-pop-orange text-white font-bold text-base border-2 border-ink shadow-[4px_4px_0_0_#1A1A2E] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <span>{isSending ? '送信中...' : '送信する'}</span>
-                <ArrowRight size={16} />
-              </motion.button>
-            </form>
+                <span>クラウドワークスで相談・依頼する</span>
+                <ExternalLink size={18} />
+              </motion.a>
+
+              {/* Footer Note */}
+              <p className="mt-4 text-[11px] text-white/40 text-center">
+                ※ クラウドワークスのプロフィール・メッセージ画面へ移動します（新規タブ）
+              </p>
+            </div>
           </motion.div>
         </div>
       </div>
