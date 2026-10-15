@@ -5,22 +5,6 @@
 
 ---
 
-## 🌟 デザイン & 特徴
-
-- **Midnight Canvas & Blueprint Grid**:
-  - ベースカラー `#05060f` に繊細な方眼ブループリントグリッドを重ね合わせ。
-  - カーソル追従によるダイナミックなネオングロー（Void Violet `#663af3` ＆ Blueprint Blue）。
-- **Frosted Glassmorphism**:
-  - 半透明ガラスカード（`backdrop-blur-md`）、ヘアラインボーダー（`rgba(186, 215, 247, 0.12)`）と立体シャドウ。
-- **モダンタイポグラフィ**:
-  - ディスプレイ見出し: `Space Grotesk`（Ice Highlight グラデーション）
-  - 本文 & UI: `Inter` / `Noto Sans JP`
-  - アイブロウラベル: `JetBrains Mono`（トラッキング付きモノスペース）
-- **Expo Go QRモーダル**:
-  - モバイルアプリ（`Study Stack`、`わかりやすい時間割`）を実機スマートフォン（Expo Go）ですぐにテスト可能なインタラクティブモーダル。
-
----
-
 ## 🛠 技術スタック
 
 - **フレームワーク**: Vite 6, React 18
@@ -31,7 +15,7 @@
 
 ---
 
-## 📁 ディレクトリ構成
+##  ディレクトリ構成
 
 ```text
 site-myportfolio/
@@ -55,25 +39,3 @@ site-myportfolio/
 ├── package.json
 ├── tailwind.config.js               # AuthKitデザイントークン定義
 └── vite.config.ts                   # Vite設定
-```
-
----
-
-## 🚀 起動方法
-
-### 開発サーバーの起動
-```bash
-npm run dev
-```
-ブラウザで `http://localhost:3000/` を開きます。
-
-### プロダクションビルド
-```bash
-npm run build
-```
-`dist/` ディレクトリに最適化された静的アセットが出力されます。
-
-### プレビュー確認
-```bash
-npm run preview
-```
