@@ -14,6 +14,7 @@ import {
   Maximize2,
   ExternalLink,
   Globe,
+  Users,
   X,
 } from 'lucide-react';
 import { worksData } from '../data/worksData';
@@ -262,12 +263,46 @@ export const WorkDetailPage: React.FC = () => {
               )}
             </section>
 
-            {/* 4. Future Roadmap */}
+            {/* Retrospective & Leadership Section (if present) */}
+            {work.retrospective && (
+              <section className="card-brutal bg-white p-6 sm:p-8">
+                <div className="flex items-center gap-2 mb-4 text-xs font-mono tracking-widest text-ink-muted uppercase">
+                  <span className="w-2 h-2 bg-pop-orange" />
+                  <span>04. チーム開発・リーダーシップの振り返り</span>
+                </div>
+                <h2 className="text-2xl font-display font-bold text-ink mb-6 flex items-center gap-2.5">
+                  <Users size={22} className={accentTextClass} />
+                  <span>{work.retrospective.title}</span>
+                </h2>
+                <div className="space-y-4">
+                  {work.retrospective.items.map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="p-4 sm:p-5 border-2 border-ink bg-cream/40 shadow-[3px_3px_0_0_#1A1A2E]"
+                    >
+                      <div className="flex items-start sm:items-center gap-2 text-xs font-mono font-bold mb-2 flex-wrap">
+                        <span className="px-2 py-0.5 bg-ink text-white text-[10px] uppercase font-mono tracking-wider">
+                          POINT #{idx + 1}
+                        </span>
+                        <span className="text-ink font-bold text-sm sm:text-base">
+                          {item.subtitle}
+                        </span>
+                      </div>
+                      <p className="text-xs sm:text-sm text-ink-secondary leading-relaxed font-medium">
+                        {item.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Future Roadmap */}
             {work.futurePlans && work.futurePlans.length > 0 && (
               <section className="card-brutal bg-white p-6 sm:p-8">
                 <div className="flex items-center gap-2 mb-4 text-xs font-mono tracking-widest text-ink-muted uppercase">
                   <span className="w-2 h-2 bg-ink" />
-                  <span>04. 今後の展望・ロードマップ</span>
+                  <span>{work.retrospective ? '05' : '04'}. 今後の展望・ロードマップ</span>
                 </div>
                 <h2 className="text-2xl font-display font-bold text-ink mb-4">
                   これからのアップデート構想

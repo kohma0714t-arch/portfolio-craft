@@ -22,6 +22,17 @@ export interface WorkItem {
   githubUrl?: string;
   demoUrl?: string;
   disclaimer?: string;
+  retrospective?: RetrospectiveSection;
+}
+
+export interface RetrospectiveItem {
+  subtitle: string;
+  description: string;
+}
+
+export interface RetrospectiveSection {
+  title: string;
+  items: RetrospectiveItem[];
 }
 
 export interface AchievementItem {
