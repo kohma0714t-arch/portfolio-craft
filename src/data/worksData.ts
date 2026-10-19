@@ -131,4 +131,52 @@ export const worksData: WorkItem[] = [
     status: 'published',
     accentColor: 'pop-mint',
   },
+  {
+    id: 'dateplanner',
+    projectNumber: '04',
+    category: 'Web',
+    title: 'DatePlanner',
+    subtitle: '渋川の海と夕日を味方に、最高のデートをAIがプロデュース',
+    tagline: 'Gemini AIが移動時間・費用・告白の成功率まで計算するスマートデートプランナビ',
+    iconImage: getAssetUrl('/images/DatePlanner_icon.png'),
+    screenshotImage: getAssetUrl('/images/DatePlanner_hero.jpg'),
+    period: '2026.10（ハッカソン 2日間）',
+    role: '企画・プロンプト設計・開発全般（バイブコーディング）',
+    demoUrl: 'https://dateplanner-eta.vercel.app/',
+    description:
+      '玉野・渋川海岸の魅力を最大限に引き出し、デートプランを考える手間や迷いを解消するために開発したAIスマートデートプラン生成Webサービスです。',
+    longDescription: [
+      '「渋川の海をもっと盛り上げたい」「特別な日や告白のデートコースを考えるのが大変で迷ってしまう」という課題に着目し、ハッカソンにて2日間で開発したプロトタイプです。',
+      '目的（記念日、初デート、告白・プロポーズ等）や希望の雰囲気を選ぶだけで、Gemini AIが玉野・渋川エリアの実在する絶景スポット、カフェ、温泉などを組み合わせた1日の最適コースを自動生成します。',
+      'さらに、独自の「告白成功度」スコアリングやタイムスケジュール、移動手段別の所要時間・予算シミュレーション、他ユーザーが作成したプランの閲覧機能を備えています。',
+    ],
+    techStack: ['TypeScript', 'Next.js', 'Tailwind CSS', 'Gemini AI', 'Vercel'],
+    highlights: [
+      '渋川海岸や王子が岳の絶景・夕日を組み込んだAIデートプラン自動提案',
+      'AIが雰囲気や時間帯から算出する独自の「告白成功度」シミュレーション',
+      'カップルに人気の厳選コースや他ユーザー作成プランの閲覧・共有機能',
+      'ハッカソン2日間でのスピード開発と、瀬戸内の海を想起させる洗練されたUI/UX',
+    ],
+    challenges: [
+      'Antigravityによるバイブコーディング（Vibe Coding）を駆使しつつ、AI生成デザイン特有の無機質さやAI感を排除し、情緒と洗練された世界観を追求',
+      '玉野・渋川エリアの地域特性（海・夕日・絶景スポット等）に合わせたプロンプトエンジニアリングとレスポンス精度の最適化',
+      '2日間という限られた時間の中で、プラン生成からスポット詳細・告白成功度判定まで動く完動プロトタイプを構築',
+    ],
+    architecture: [
+      'Framework: Next.js (App Router) + TypeScript による高速レンダリングと型安全性',
+      'AI Engine: Gemini APIを活用した文脈連動型プランニング＆スコアリング推論',
+      'UI/UX: Tailwind CSS による瀬戸内の海と空をテーマにしたクリーンなデザイン',
+      'Platform: Vercel による高速ホスティングとCI/CDデプロイ',
+    ],
+    futurePlans: [
+      '地域自治体や地元飲食店・宿泊施設との公式連携機能の検討',
+      'リアルタイム潮汐・日没時刻APIと連動したダイナミックなタイムテーブル生成',
+      'お気に入りプランの保存やオフラインでの旅程しおり機能',
+    ],
+    disclaimer:
+      '※本サービスは、ハッカソン（2026年10月）における研究開発・プロトタイプとして制作された非公式のデモ作品です。掲載されている実在の店舗・施設・自治体等とは一切の提携・公式関係はございません。また、掲載画像は技術検証およびプレゼンテーション目的のサンプル引用です。',
+    status: 'published',
+    accentColor: 'pop-orange',
+  },
 ];
+

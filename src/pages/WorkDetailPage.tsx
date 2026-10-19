@@ -7,10 +7,13 @@ import {
   Smartphone,
   CheckCircle2,
   AlertCircle,
+  AlertTriangle,
   QrCode,
   Layers,
   Sparkles,
   Maximize2,
+  ExternalLink,
+  Globe,
   X,
 } from 'lucide-react';
 import { worksData } from '../data/worksData';
@@ -130,8 +133,42 @@ export const WorkDetailPage: React.FC = () => {
                 </div>
               </div>
             </div>
+
+            {/* Live Demo Link in Header if available */}
+            {work.demoUrl && (
+              <div className="mt-6 pt-4 border-t border-ink/10 flex flex-wrap items-center justify-between gap-4">
+                <span className="text-xs font-mono text-ink-muted">公開デモサイト提供中</span>
+                <a
+                  href={work.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-pop-orange text-white text-xs sm:text-sm font-bold border-2 border-ink shadow-[3px_3px_0_0_#1A1A2E] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all font-mono"
+                >
+                  <Globe size={16} />
+                  <span>デモサイトを開く</span>
+                  <ExternalLink size={14} />
+                </a>
+              </div>
+            )}
           </div>
         </div>
+
+        {/* Disclaimer Notice if provided */}
+        {work.disclaimer && (
+          <div className="card-brutal bg-[#FFFBEB] border-2 border-amber-600 shadow-[4px_4px_0_0_#D97706] p-5 sm:p-6 mb-10">
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="text-amber-600 flex-shrink-0 mt-0.5" size={20} />
+              <div className="space-y-1">
+                <h4 className="text-xs font-mono font-bold tracking-wider text-amber-800 uppercase">
+                  ATTENTION / 免責事項
+                </h4>
+                <p className="text-xs sm:text-sm text-amber-950 font-medium leading-relaxed whitespace-pre-line">
+                  {work.disclaimer}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Main Content Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
@@ -257,7 +294,7 @@ export const WorkDetailPage: React.FC = () => {
               <div className="card-brutal bg-white p-4">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-xs font-mono font-bold uppercase text-ink-muted">
-                    アプリ画面プレビュー
+                    {work.category === 'Web' ? 'Webプレビュー' : 'アプリ画面プレビュー'}
                   </span>
                   <button
                     onClick={() => setIsScreenshotModalOpen(true)}
@@ -268,18 +305,46 @@ export const WorkDetailPage: React.FC = () => {
                   </button>
                 </div>
                 <div
-                  className="cursor-pointer overflow-hidden border-2 border-ink group relative aspect-[9/16] bg-ink/5 flex items-center justify-center"
+                  className={`cursor-pointer overflow-hidden border-2 border-ink group relative ${
+                    work.category === 'Web' ? 'aspect-[16/10]' : 'aspect-[9/16]'
+                  } bg-ink/5 flex items-center justify-center`}
                   onClick={() => setIsScreenshotModalOpen(true)}
                 >
                   <img
                     src={work.screenshotImage}
                     alt={`${work.title} スクリーンショット`}
-                    className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-102"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-102"
                   />
                   <div className="absolute inset-0 bg-ink/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-bold gap-1">
                     <Maximize2 size={16} /> クリックで拡大
                   </div>
                 </div>
+              </div>
+            )}
+
+            {/* Web Demo Card if demoUrl exists and no qrCode */}
+            {work.demoUrl && !work.qrCodeImage && (
+              <div className="card-brutal bg-white p-5 text-center">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-pop-orange text-white text-[11px] font-mono mb-3">
+                  <Globe size={13} />
+                  <span>Webブラウザで体験</span>
+                </div>
+                <h4 className="text-base font-bold text-ink mb-1 font-display">
+                  デモサイトを体験する
+                </h4>
+                <p className="text-xs text-ink-muted mb-4 leading-relaxed">
+                  Vercel上で実際に動作している最新のWebアプリケーションをご覧いただけます。
+                </p>
+                <a
+                  href={work.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-ink text-white text-xs sm:text-sm font-bold border-2 border-ink shadow-[3px_3px_0_0_#F97316] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all font-mono"
+                >
+                  <Globe size={15} />
+                  <span>デモサイトへ移動</span>
+                  <ExternalLink size={13} />
+                </a>
               </div>
             )}
 
@@ -321,6 +386,18 @@ export const WorkDetailPage: React.FC = () => {
               <h4 className="text-sm font-bold font-display uppercase tracking-wider text-ink mb-2">
                 作品へのアクション
               </h4>
+              {work.demoUrl && (
+                <a
+                  href={work.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-pop-orange text-white text-xs sm:text-sm font-bold border-2 border-ink shadow-[3px_3px_0_0_#1A1A2E] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+                >
+                  <Globe size={14} />
+                  <span>デモサイトを訪問する</span>
+                  <ExternalLink size={13} />
+                </a>
+              )}
               <Link
                 to="/#contact"
                 className="w-full btn-primary text-center block text-xs sm:text-sm py-2.5"

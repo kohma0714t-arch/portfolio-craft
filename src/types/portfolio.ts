@@ -21,6 +21,7 @@ export interface WorkItem {
   role?: string;
   githubUrl?: string;
   demoUrl?: string;
+  disclaimer?: string;
 }
 
 export interface AchievementItem {
